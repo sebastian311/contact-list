@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Contact } from '../models/contact-model';
 import { environment } from '../environments/environment';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
-  private http: HttpClient = Inject(HttpClient)
   private apiUrl = `${environment.apiUrl}/contacts`;
+
+  constructor(private http: HttpClient){}
 
   getContacts(): Observable<Contact[]> {
     return this.http.get<Contact[]>(this.apiUrl);
