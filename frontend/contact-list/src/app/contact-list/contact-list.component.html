@@ -22,7 +22,7 @@
 
   <ng-container *ngFor="let contact of contacts">
     <p class="letter-group">{{ getFirstChar(contact) }}</p>
-    <div class="contact">
+    <div class="contact" routerLink="/contact-deets" (click)="setSelectedContact(contact)">
       <img [src]="contact.image" class="contact-img-top" appFallbackImage/>
       <div class="contact-body">
         <p class="contact-title">{{ contact.name }}</p>

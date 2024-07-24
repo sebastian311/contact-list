@@ -10,6 +10,15 @@ export const initialState: ContactState = {
 
 export const contactReducer = createReducer(
   initialState,
+  on(ContactActions.selectContactSuccess, (state, { contact }) => ({
+    ...state,
+    selectedContact: contact,
+    error: null
+  })),
+  on(ContactActions.selectContactFailure, (state, { error }) => ({
+    ...state,
+    error
+  })),
   on(ContactActions.addRandomUsersSuccess, (state, { contacts }) => ({
     ...state,
     contacts: [ ...state.contacts, ...contacts],

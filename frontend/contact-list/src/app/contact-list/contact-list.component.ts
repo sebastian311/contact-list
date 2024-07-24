@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { Contact, ContactState } from '../models/contact-model';
-import { addRandomUsers, loadContacts } from '../data-access/contact.actions';
+import { addRandomUsers, loadContacts, selectContactSuccess } from '../data-access/contact.actions';
 import { selectContactList } from '../data-access/contact.selectors';
 import { FallbackImageDirective } from '../fallback-image.directive';
 
@@ -41,12 +41,16 @@ export class ContactListComponent implements OnInit {
 
   getFirstChar(contact: Contact): string {
     if (typeof contact.name === 'string') {
-      return contact.name.charAt(0);
+      return contact.name.charAt(0).toUpperCase();
     }
     return '';
   }
 
   addRandomUsers() {
     this.store.dispatch(addRandomUsers());
+  }
+
+  setSelectedContact(selectedContact: Contact) {
+    this.store.dispatch(selectContactSuccess({ contact: selectedContact }));
   }
 }

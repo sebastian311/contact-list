@@ -15,6 +15,10 @@ export const addContact = createAction('[Contact List] Add Contact', props<{ con
 export const addContactSuccess = createAction('[Contact List] Add Contact Success', props<{ contact: Contact }>());
 export const addContactFailure = createAction('[Contact List] Add Contact Failure', props<{ error: string }>());
 
+export const selectContact = createAction('[Contact List] Select Contact', props<{ contact: Contact }>());
+export const selectContactSuccess = createAction('[Contact List] Select Contact Success', props<{ contact: Contact }>());
+export const selectContactFailure = createAction('[Contact List] Select Contact Failure', props<{ error: string }>());
+
 export const updateContact = createAction('[Contact Details] Update Contact', props<{ contact: Contact }>());
 export const updateContactSuccess = createAction('[Contact Details] Update Contact Success', props<{ contact: Contact }>());
 export const updateContactFailure = createAction('[Contact Details] Update Contact Failure', props<{ error: string }>());

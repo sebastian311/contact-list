@@ -1,1 +1,13 @@
-<p>contact-details works!</p>
+<button class="back-button" (click)="goBack()">Back</button>
+<div class="container d-flex flex-column" *ngIf="contact$ | async as contact">
+  <div class="header">
+    <img [src]="contact.image" class="contact-img-top" appFallbackImage/>
+    <h1>{{ contact.name }}</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm">col-sm</div>
+    <div class="col-sm">col-sm</div>
+    <div class="col-sm">col-sm</div>
+  </div>
+</div>

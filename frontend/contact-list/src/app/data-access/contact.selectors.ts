@@ -7,3 +7,8 @@ export const selectContactList = createSelector(
   selectContactState,
   (state: ContactState) => state.contacts
 );
+
+export const selectSelectedContact = createSelector(
+  selectContactState,
+  (state: ContactState) => state.selectedContact
+);
