@@ -43,7 +43,7 @@ Ensure you have the following installed on your local development environment:
 
 1. **Clone the Repository**:
     ```sh
-    git clone <repository-url>
+    git clone git@github.com:sebastian311/contact-list.git
     cd <repository-directory>/backend
     ```
 
