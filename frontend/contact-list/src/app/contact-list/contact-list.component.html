@@ -20,6 +20,7 @@
   <h1 class="title"> Contact List </h1>
 
   <ng-container *ngFor="let contact of contacts">
+    <p class="letter-group">{{ getFirstChar(contact) }}</p>
     <div class="contact">
       <img [src]="contact.image" class="contact-img-top" />
       <div class="contact-body">

@@ -12,11 +12,18 @@
     height: 100%;
 }
 
+.letter-group {
+    font-weight: 900;
+    font-size: larger;
+    color: #9b999986
+}
+
 .contact {
     display: flex;
     flex-direction: row;
     height: 3rem;
     width: 100%;
+    margin-top: 1rem;
 
     .contact-img-top {
         height: 100%;

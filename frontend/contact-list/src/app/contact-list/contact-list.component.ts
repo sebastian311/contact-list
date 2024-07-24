@@ -31,4 +31,10 @@ export class ContactListComponent implements OnInit {
     return [];
   }
 
+  getFirstChar(contact: Contact): string {
+    if (typeof contact.name === 'string') {
+      return contact.name.charAt(0);
+    }
+    return '';
+  }
 }
