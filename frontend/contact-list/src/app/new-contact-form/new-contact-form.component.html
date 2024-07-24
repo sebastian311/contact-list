@@ -1,0 +1,63 @@
+<h1 class="title"> ADD NEW CONTACT </h1>
+
+<div class="container">
+    <form [formGroup]="newContactForm" (ngSubmit)="onSubmit()">
+        <!-- Name Field -->
+        <div class="mb-3">
+          <label for="inputName" class="form-label">Name<span style="color: red">*</span></label>
+          <input type="name" class="form-control" id="inputName" formControlName="name">
+          <div *ngIf="newContactForm.get('name')?.invalid && newContactForm.get('name')?.touched" class="text-danger">
+            Name is required.
+          </div>
+        </div>
+
+        <!-- Age Field -->
+        <div class="mb-3">
+          <label for="inputAge" class="form-label">Age</label>
+          <input type="age" class="form-control" id="inputAge" formControlName="age">
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email<span style="color: red">*</span></label>
+          <input type="email" class="form-control" id="inputEmail" formControlName="email">
+          <div *ngIf="newContactForm.get('email')?.invalid && newContactForm.get('email')?.touched" class="text-danger">
+            Email is required.
+          </div>
+        </div>
+
+        <!-- Phone Field -->
+        <div class="mb-3">
+          <label for="inputPhone" class="form-label">Phone</label>
+          <input type="telephone" class="form-control" id="inputPhone" formControlName="phone">
+        </div>
+
+        <!-- Cell Field -->
+        <div class="mb-3">
+          <label for="inputCell" class="form-label">Cell<span style="color: red">*</span></label>
+          <input type="telephone" class="form-control" id="inputCell" formControlName="cell">
+          <div *ngIf="newContactForm.get('cell')?.invalid && newContactForm.get('cell')?.touched" class="text-danger">
+            Cell is required.
+          </div>
+        </div>
+
+        <!-- Address Field -->
+        <div class="mb-3">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="inputAddress" aria-describedby="addressHelp" formControlName="address">
+          <div id="addressHelp" class="form-text">Street name, number, city, country</div>
+        </div>
+
+        <!-- Address Field -->
+        <div class="mb-3">
+          <label for="inputImage" class="form-label">Image</label>
+          <input type="text" class="form-control" id="inputImage" aria-describedby="imageHelp" formControlName="image">
+          <div id="imageHelp" class="form-text">Please add contact's image.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <div *ngIf="newContactForm.invalid && newContactForm.touched" class="text-danger mt-2">
+            Please fill out all required fields correctly.
+          </div>
+      </form>
+</div>
