@@ -26,3 +26,7 @@ export const updateContactFailure = createAction('[Contact Details] Update Conta
 export const deleteContact = createAction('[Contact Details] Delete Contact', props<{ id: string }>());
 export const deleteContactSuccess = createAction('[Contact Details] Delete Contact Success', props<{ id: string }>());
 export const deleteContactFailure = createAction('[Contact Details] Delete Contact Failure', props<{ error: string }>());
+
+export const loadContact = createAction('[Contact List] Load Contact', props<{ id: string }>());
+export const loadContactSuccess = createAction('[Contact List] Load Contact Success', props<{ contact: Contact }>());
+export const loadContactFailure = createAction('[Contact List] Load Contact Failure', props<{ error: string }>());

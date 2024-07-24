@@ -2,6 +2,34 @@
     padding: 1rem;
 }
 
+.header-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    .buttons-container {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .contact-img-top {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.form-label {
+    font-weight: 900;
+}
+
 .back-button::before {
     content: '← ';
     margin-right: 5px;

@@ -26,6 +26,17 @@ export class ContactEffects {
   );
 
   // My API effects
+  loadContact$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ContactActions.loadContact),
+      mergeMap(action =>
+        this.contactService.getContactById(action.id).pipe(
+          map(contact => ContactActions.loadContactSuccess({ contact })),
+          catchError(error => of(ContactActions.loadContactFailure({ error: error.message })))
+        )
+      )
+    )
+  );
   loadContacts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ContactActions.loadContacts),
