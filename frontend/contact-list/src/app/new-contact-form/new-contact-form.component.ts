@@ -57,4 +57,8 @@ export class NewContactFormComponent {
       this.router.navigateByUrl('/'); // go back home
     }
   }
+
+  goBack() {
+    this.router.navigateByUrl('/'); // go back home
+  }
 }
