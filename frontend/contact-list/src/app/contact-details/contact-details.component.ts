@@ -10,12 +10,11 @@ import {
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as uuid from 'uuid';
 
 import { Contact, ContactState } from '../models/contact-model';
 import { selectSelectedContact } from '../data-access/contact.selectors';
 import { FallbackImageDirective } from '../fallback-image.directive';
-import { updateContact } from '../data-access/contact.actions';
+import { deleteContact, updateContact } from '../data-access/contact.actions';
 
 @Component({
   selector: 'app-contact-details',
@@ -86,5 +85,10 @@ export class ContactDetailsComponent {
 
       this.router.navigateByUrl('/'); // go back home
     }
+  }
+
+  deleteContact(contact: Contact): void {
+    this.store.dispatch(deleteContact({ id: contact.id }))
+    this.router.navigateByUrl('/'); // go back home
   }
 }

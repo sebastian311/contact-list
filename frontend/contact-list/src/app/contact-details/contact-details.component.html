@@ -3,7 +3,7 @@
     <div class="buttons-container" *ngIf="contact$ | async as contact; else abort">
         <button *ngIf="!editMode" type="button" class="btn btn-outline-info" (click)="enableEdit(contact)">EDIT</button>
         <button *ngIf="editMode" type="button" class="btn btn-outline-info active" (click)="editMode = false">EDIT</button>
-        <button type="button" class="btn btn-outline-danger">DELETE</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteContact(contact)">DELETE</button>
     </div>
 </div>
 <div class="container d-flex flex-column" *ngIf="contact$ | async as contact; else abort">
