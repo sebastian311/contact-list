@@ -1,10 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Contact, ContactState } from '../models/contact-model';
-import { addRandomUsers, loadContacts, selectContactSuccess } from '../data-access/contact.actions';
+import {
+  addRandomUsers,
+  loadContacts,
+  selectContactSuccess,
+} from '../data-access/contact.actions';
 import { selectContactList } from '../data-access/contact.selectors';
 import { FallbackImageDirective } from '../fallback-image.directive';
 
@@ -14,15 +22,16 @@ import { FallbackImageDirective } from '../fallback-image.directive';
   imports: [CommonModule, FallbackImageDirective, RouterModule],
   templateUrl: './contact-list.component.html',
   styleUrl: './contact-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactListComponent implements OnInit {
   contactList$: Observable<Contact[]>;
+  alphabet: string[] = [];
 
   constructor(private store: Store<ContactState>) {
-    this.contactList$ = this.store
-      .select(selectContactList)
-      .pipe(map((contactList) => this.sortByName(contactList)));
+    this.contactList$ = this.store.select(selectContactList).pipe(
+      map((contactList) => this.sortByName(contactList))
+    );
   }
 
   ngOnInit(): void {
@@ -42,9 +51,14 @@ export class ContactListComponent implements OnInit {
 
   getFirstChar(contact: Contact): string {
     if (typeof contact.name === 'string') {
-      return contact.name.charAt(0).toUpperCase();
+      const firstChar = contact.name.charAt(0).toUpperCase();
+      if (!this.alphabet.includes(firstChar)) {
+        this.alphabet.push(firstChar);
+        return firstChar;
+      }
     }
-    return '';
+
+    return ''
   }
 
   addRandomUsers() {
