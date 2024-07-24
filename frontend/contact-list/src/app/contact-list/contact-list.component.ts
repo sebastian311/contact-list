@@ -5,11 +5,12 @@ import { map, Observable } from 'rxjs';
 import { Contact, ContactState } from '../models/contact-model';
 import { loadContacts } from '../data-access/contact.actions';
 import { selectContactList } from '../data-access/contact.selectors';
+import { FallbackImageDirective } from '../fallback-image.directive';
 
 @Component({
   selector: 'app-contact-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FallbackImageDirective],
   templateUrl: './contact-list.component.html',
   styleUrl: './contact-list.component.scss',
 })
