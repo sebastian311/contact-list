@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Contact, ContactState } from '../models/contact-model';
 import { loadContacts } from '../data-access/contact.actions';
 import { selectContactList } from '../data-access/contact.selectors';
@@ -17,10 +17,18 @@ export class ContactListComponent implements OnInit {
   contactList$: Observable<Contact[]>;
 
   constructor(private store: Store<ContactState>) {
-    this.contactList$ = this.store.select(selectContactList);
+    this.contactList$ = this.store.select(selectContactList).pipe(
+      map(contactList => this.sortByName(contactList))
+    );
   }
 
   ngOnInit(): void {
     this.store.dispatch(loadContacts());
   }
+
+  sortByName(contactList: Contact[] ): Contact[] {
+    if(contactList.length && contactList.length > 0) return [...contactList].sort((a,b) => a.name.localeCompare(b.name));
+    return [];
+  }
+
 }

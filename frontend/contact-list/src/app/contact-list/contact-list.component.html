@@ -1,7 +1,33 @@
-<div class="container" *ngIf="(contactList$ | async) as contacts">
-    {{contacts | json}}
-    <!-- <ng-container *ngFor="let contact of contacts">
-      {{ contact.address }}
-    </ng-container> -->
+<div class="container" *ngIf="contactList$ | async as contacts">
+  <div class="container px-7 text-center header">
+    <div class="row gx-5">
+      <div class="col">
+        <button type="button" class="btn btn-outline-primary actionBtn">
+          Add Random Records
+        </button>
+      </div>
+      <div class="col">
+        <button
+          type="button"
+          class="btn btn-outline-success actionBtn"
+        >
+          New Contact
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="title"> Contact List </h1>
+
+  <ng-container *ngFor="let contact of contacts">
+    <div class="contact">
+      <img [src]="contact.image" class="contact-img-top" />
+      <div class="contact-body">
+        <p class="contact-title">{{ contact.name }}</p>
+        <p class="contact-text">
+          {{ contact.address }} - {{ contact.email }} - {{ contact.phone }}
+        </p>
+      </div>
+    </div>
+  </ng-container>
 </div>
-  

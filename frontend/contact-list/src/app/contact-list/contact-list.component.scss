@@ -1,0 +1,42 @@
+.header {
+    padding: 1rem;
+}
+
+.title {
+    text-align: center;
+    padding: 1rem;
+}
+
+.actionBtn {
+    width: 100%;
+    height: 100%;
+}
+
+.contact {
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    width: 100%;
+
+    .contact-img-top {
+        height: 100%;
+    }
+    
+    .contact-title {
+        font-weight: 700;
+    }
+
+    .contact-text {
+        max-width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: gray;
+    }
+
+    .contact-body {
+        p:first-child {
+            height: 10px;
+        }
+    }
+}
