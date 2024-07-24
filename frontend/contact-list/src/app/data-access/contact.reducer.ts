@@ -47,5 +47,4 @@ export const contactReducer = createReducer(
     error
   }))
 );
-export { ContactState };
 

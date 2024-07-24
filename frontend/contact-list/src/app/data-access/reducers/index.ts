@@ -3,11 +3,11 @@ import { contactReducer } from '../contact.reducer';
 import { ContactState } from '../../models/contact-model';
 
 export interface AppState {
-  contacts: ContactState;
+  state: ContactState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  contacts: contactReducer
+  state: contactReducer
 };
 
 export const metaReducers: MetaReducer<AppState>[] = [];

@@ -1,5 +1,7 @@
-<div class="container" *ngIf="(contactList$ | async) as conList">
-    <ng-container *ngFor="let contact of conList">
-        {{contact | json}}
-    </ng-container>
+<div class="container" *ngIf="(contactList$ | async) as contacts">
+    {{contacts | json}}
+    <!-- <ng-container *ngFor="let contact of contacts">
+      {{ contact.address }}
+    </ng-container> -->
 </div>
+  

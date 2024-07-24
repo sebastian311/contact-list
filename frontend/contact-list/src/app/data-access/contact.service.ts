@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Contact } from '../models/contact-model';
 import { environment } from '../environments/environment';
 
@@ -13,7 +13,11 @@ export class ContactService {
   constructor(private http: HttpClient){}
 
   getContacts(): Observable<Contact[]> {
-    return this.http.get<Contact[]>(this.apiUrl);
+    let contacts = this.http.get<{ contacts: Contact[]}>(this.apiUrl).pipe(
+      map(contactObj => contactObj.contacts)
+    )
+
+    return contacts;
   }
 
   getContact(id: number): Observable<Contact> {
