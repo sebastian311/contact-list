@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ContactService } from './contact.service';
 import * as ContactActions from './contact.actions';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()
@@ -18,7 +18,15 @@ export class ContactEffects {
       ofType(ContactActions.addRandomUsers),
       switchMap(() =>
         this.contactService.getRandomUsers().pipe(
-          map(contacts => ContactActions.addRandomUsersSuccess({ contacts })),
+          switchMap(contacts => 
+            this.contactService.saveRandomUsers(contacts).pipe(
+              switchMap(savedContacts => [
+                ContactActions.addRandomUsersSuccess({ contacts: savedContacts }),
+                ContactActions.loadContacts()  // Dispatch loadContacts after success
+              ]),
+              catchError(error => of(ContactActions.addRandomUsersFailure({ error: error.message })))
+            )
+          ),
           catchError(error => of(ContactActions.addRandomUsersFailure({ error: error.message })))
         )
       )

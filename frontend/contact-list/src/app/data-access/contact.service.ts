@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { forkJoin, map, mergeMap, Observable } from 'rxjs';
 import { Contact } from '../models/contact-model';
 import { environment } from '../environments/environment';
 
@@ -37,6 +37,11 @@ export class ContactService {
     );
   }
 
+  saveRandomUsers(contacts: Contact[]): Observable<Contact[]> {
+    const saveOperations = contacts.map(contact => this.createContact(contact));
+    return forkJoin(saveOperations);
+  }
+  
   // My API calls
 
   getContacts(): Observable<Contact[]> {

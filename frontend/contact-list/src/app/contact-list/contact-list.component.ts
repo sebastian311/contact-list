@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
@@ -14,6 +14,7 @@ import { FallbackImageDirective } from '../fallback-image.directive';
   imports: [CommonModule, FallbackImageDirective, RouterModule],
   templateUrl: './contact-list.component.html',
   styleUrl: './contact-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactListComponent implements OnInit {
   contactList$: Observable<Contact[]>;
