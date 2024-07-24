@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { Contact, ContactState } from '../models/contact-model';
-import { loadContacts } from '../data-access/contact.actions';
+import { addRandomUsers, loadContacts } from '../data-access/contact.actions';
 import { selectContactList } from '../data-access/contact.selectors';
 import { FallbackImageDirective } from '../fallback-image.directive';
+import { ContactService } from '../data-access/contact.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -17,7 +18,7 @@ import { FallbackImageDirective } from '../fallback-image.directive';
 export class ContactListComponent implements OnInit {
   contactList$: Observable<Contact[]>;
 
-  constructor(private store: Store<ContactState>) {
+  constructor(private store: Store<ContactState> ) {
     this.contactList$ = this.store.select(selectContactList).pipe(
       map(contactList => this.sortByName(contactList))
     );
@@ -37,5 +38,9 @@ export class ContactListComponent implements OnInit {
       return contact.name.charAt(0);
     }
     return '';
+  }
+
+  addRandomUsers() {
+    this.store.dispatch(addRandomUsers());
   }
 }

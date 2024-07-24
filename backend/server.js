@@ -22,7 +22,7 @@ const db = new sqlite3.Database('./contacts.db', (err) => {
 
 // Create Contacts Table
 db.run(`CREATE TABLE IF NOT EXISTS contacts (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  id TEXT PRIMARY KEY AUTOINCREMENT,
   name TEXT,
   address TEXT,
   email TEXT,

@@ -12,6 +12,20 @@ export class ContactEffects {
     private contactService: ContactService
   ) {}
 
+  // Random User Generator Effect
+  addRandomUsers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ContactActions.addRandomUsers),
+      switchMap(() =>
+        this.contactService.getRandomUsers().pipe(
+          map(contacts => ContactActions.addRandomUsersSuccess({ contacts })),
+          catchError(error => of(ContactActions.addRandomUsersFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
+  // My API effects
   loadContacts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ContactActions.loadContacts),
