@@ -15,6 +15,7 @@ import {
 } from '../data-access/contact.actions';
 import { selectContactList } from '../data-access/contact.selectors';
 import { FallbackImageDirective } from '../fallback-image.directive';
+import { AppState } from '../data-access/reducers';
 
 @Component({
   selector: 'app-contact-list',
@@ -28,9 +29,9 @@ export class ContactListComponent implements OnInit {
   contactList$: Observable<Contact[]>;
   alphabet: string[] = [];
 
-  constructor(private store: Store<ContactState>) {
+  constructor(private store: Store<AppState>) {
     this.contactList$ = this.store.select(selectContactList).pipe(
-      map((contactList) => this.sortByName(contactList))
+      map((contactList: Contact[]) => this.sortByName(contactList))
     );
   }
 

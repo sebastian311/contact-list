@@ -15,6 +15,7 @@ import { Contact, ContactState } from '../models/contact-model';
 import { selectSelectedContact } from '../data-access/contact.selectors';
 import { FallbackImageDirective } from '../fallback-image.directive';
 import { deleteContact, updateContact } from '../data-access/contact.actions';
+import { AppState } from '../data-access/reducers';
 
 @Component({
   selector: 'app-contact-details',
@@ -41,7 +42,7 @@ export class ContactDetailsComponent {
     selectSelectedContact
   );
 
-  constructor(private store: Store<ContactState>, private router: Router, private cdr: ChangeDetectorRef) {}
+  constructor(private store: Store<AppState>, private router: Router, private cdr: ChangeDetectorRef) {}
 
   goBack() {
     this.router.navigateByUrl('/');
